@@ -1,84 +1,125 @@
-import { Fragment, ReactNode, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import React from "react";
+import styled from "styled-components";
+import { AlertCircle } from "react-feather";
 
 interface Props {
   open: boolean;
   setOpen: (newState: boolean) => void;
-  body: ReactNode;
+  body: React.ReactNode;
 }
 
-const Modal = ({ open = false, setOpen, body }: Props) => {
-  const cancelButtonRef = useRef(null);
+const ModalOverlay = styled.div`
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+`;
+
+const ModalContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  max-width: 30rem;
+  width: 100%;
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ModalTitle = styled.h3`
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-left: 0.5rem;
+`;
+
+const ModalBody = styled.p`
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 0.5rem;
+`;
+
+const ModalFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+`;
+
+const ModalButton = styled.button`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+`;
+
+const ModalCancelButton = styled(ModalButton)`
+  background-color: #fff;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
+  margin-left: 0.5rem;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+`;
+
+const ModalConfirmButton = styled(ModalButton)`
+  background-color: #10b981;
+  border: none;
+  color: #fff;
+
+  &:hover {
+    background-color: #059669;
+  }
+`;
+
+const Modal: React.FC<Props> = ({ open = false, setOpen, body }) => {
+  const closeModal = () => {
+    setOpen(false);
+  };
+
+  if (!open) {
+    return null;
+  }
 
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        initialFocus={cancelButtonRef}
-        onClose={setOpen}
-      >
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-2 sm:p-0">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
-                <div className="bg-white px-2 pb-2 pt-3 sm:p-4">
-                  <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-2 w-2 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <ExclamationTriangleIcon
-                        className="h-6 w-6 text-red-600"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <Dialog.Title
-                        as="h3"
-                        className="text-base font-semibold leading-6 text-gray-900"
-                      >
-                        Lembrete
-                      </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">{body}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-gray-50 px-2 py-1 sm:flex sm:flex-row-reverse sm:px-4">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-green-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                  >
-                    Continuar
-                  </button>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </div>
-      </Dialog>
-    </Transition.Root>
+    <ModalOverlay>
+      <ModalContainer>
+        <ModalContent>
+          <ModalHeader>
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
+              <AlertCircle color="red" size={18} aria-hidden="true" />
+            </div>
+            <ModalTitle>Lembrete</ModalTitle>
+          </ModalHeader>
+          <ModalBody>{body}</ModalBody>
+          <ModalFooter>
+            <ModalConfirmButton onClick={closeModal}>
+              Continuar
+            </ModalConfirmButton>
+            {/* <ModalCancelButton onClick={closeModal}>Cancelar</ModalCancelButton> */}
+          </ModalFooter>
+        </ModalContent>
+      </ModalContainer>
+    </ModalOverlay>
   );
 };
 
