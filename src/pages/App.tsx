@@ -135,7 +135,7 @@ const App = () => {
         <h1>Centro Médico de Campinas</h1>
         {gameWon && (
           <ContainerButton>
-            <img src={yoda} width={300} height={300} alt="yoda" />
+            <img src={yoda} width={200} height={200} alt="yoda" />
             <Button onClick={refreshPage}>Jogar de Novo</Button>
           </ContainerButton>
         )}
