@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { AlertCircle } from "react-feather";
+import React from 'react'
+import styled from 'styled-components'
+import { AlertCircle } from 'react-feather'
 
 interface Props {
-  open: boolean;
-  setOpen: (newState: boolean) => void;
-  body: React.ReactNode;
+  open: boolean
+  setOpen: (newState: boolean) => void
+  body: React.ReactNode
 }
 
 const ModalOverlay = styled.div`
@@ -16,14 +16,14 @@ const ModalOverlay = styled.div`
   right: 0;
   bottom: 0;
   z-index: 9999;
-`;
+`
 
 const ModalContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-`;
+`
 
 const ModalContent = styled.div`
   background-color: white;
@@ -32,31 +32,31 @@ const ModalContent = styled.div`
   padding: 2rem;
   max-width: 30rem;
   width: 100%;
-`;
+`
 
 const ModalHeader = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 const ModalTitle = styled.h3`
   font-size: 1.125rem;
   font-weight: 600;
   color: #1f2937;
   margin-left: 0.5rem;
-`;
+`
 
 const ModalBody = styled.p`
   font-size: 0.875rem;
   color: #4b5563;
   margin-top: 0.5rem;
-`;
+`
 
 const ModalFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 1rem;
-`;
+`
 
 const ModalButton = styled.button`
   display: inline-flex;
@@ -68,18 +68,7 @@ const ModalButton = styled.button`
   border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-`;
-
-const ModalCancelButton = styled(ModalButton)`
-  background-color: #fff;
-  border: 1px solid #d1d5db;
-  color: #6b7280;
-  margin-left: 0.5rem;
-
-  &:hover {
-    background-color: #f3f4f6;
-  }
-`;
+`
 
 const ModalConfirmButton = styled(ModalButton)`
   background-color: #10b981;
@@ -89,15 +78,15 @@ const ModalConfirmButton = styled(ModalButton)`
   &:hover {
     background-color: #059669;
   }
-`;
+`
 
 const Modal: React.FC<Props> = ({ open = false, setOpen, body }) => {
   const closeModal = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   if (!open) {
-    return null;
+    return null
   }
 
   return (
@@ -115,12 +104,11 @@ const Modal: React.FC<Props> = ({ open = false, setOpen, body }) => {
             <ModalConfirmButton onClick={closeModal}>
               Continuar
             </ModalConfirmButton>
-            {/* <ModalCancelButton onClick={closeModal}>Cancelar</ModalCancelButton> */}
           </ModalFooter>
         </ModalContent>
       </ModalContainer>
     </ModalOverlay>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal
