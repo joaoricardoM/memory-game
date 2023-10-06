@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   position: relative;
@@ -8,11 +8,11 @@ export const Wrapper = styled.div`
     z-index: 1;
     transform: rotateY(180deg);
   }
-`;
+`
 
 type Props = {
-  flipped: boolean;
-};
+  flipped: boolean
+}
 
 const sharedStyles = css`
   width: 135px;
@@ -22,22 +22,24 @@ const sharedStyles = css`
   cursor: pointer;
   transform-style: preserve-3d;
   border-radius: 15px;
-`;
+  border: 1px solid #90d8ef;
+  background-color: #022c22;
+`
 
 export const FrontImg = styled.img<Props>`
   ${sharedStyles}
 
   z-index: ${(props) => (props.flipped ? 2 : 1)};
-  transform: ${(props) => (props.flipped ? "rotate(0deg)" : "rotateY(180deg)")};
-`;
+  transform: ${(props) => (props.flipped ? 'rotate(0deg)' : 'rotateY(180deg)')};
+`
 
 export const BackImg = styled.img<Props>`
   ${sharedStyles}
 
   z-index: ${(props) => (props.flipped ? 1 : 2)};
   transform: ${(props) =>
-    props.flipped ? "rotateY(180deg)" : "rotate(360deg)"};
+    props.flipped ? 'rotateY(180deg)' : 'rotate(360deg)'};
   position: absolute;
   top: 0px;
   left: 0px;
-`;
+`
