@@ -10,7 +10,7 @@ import {
   Button
 } from './App.styles'
 
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/images/logo.png'
 import yoda from '../assets/images/yoda.png'
 
 import { createBoard } from '../utils/setup'
@@ -35,33 +35,36 @@ const App = () => {
   const texts: { id: string; text: string }[] = [
     {
       id: 'text0',
-      text: 'Uma das principais medidas de PREVENÇÃO de infecção é a HIGIENIZAÇÃO das mãos.'
+      text: ' Antes de ser Skywalker, Luke era Starkiller. Adventures of the Starkiller, Episode I: The Star Wars era o título da segunda versão do roteiro de Uma Nova Esperança. Luke foi rebatizado e chegou à sua personalidade definitiva durante a pré-produção do filme.'
     },
     {
       id: 'text1',
-      text: 'A LIMPEZA das SUPERFÍCIES diminui o número de BACTÉRIAS no ambiente próximo ao paciente'
+      text: 'O icônico Darth Vader foi o primeiro personagem do universo Star Wars criado por George Lucas, mesmo com seu tempo de tela limitado no longa original'
     },
     {
       id: 'text2',
-      text: 'Todos os profissionais devem realizar a higienização das MÃOS antes e após o CONTATO com o PACIENTE'
+      text: 'Apesar da presença marcante em Uma Nova Esperança, Vader aparece, ao todo, por 12 minutos no longa que deu origem à franquia.'
     },
     {
       id: 'text3',
-      text: 'A participação do ACOMPANHANTE é FUNDAMENTAL no COMBATE aos microrganismos presentes nos AMBIENTES do hospital.'
+      text: ' Originalmente, Darth Vader seria um caçador de recompensas intergaláctico, mas depois que o personagem se tornou um Jedi caído, Lucas decidiu reciclar o conceito do "bounty hunter" para Boba Fett.'
     },
     {
       id: 'text4',
-      text: 'Seguimos protocolos para limpeza e DESINFECÇÃO de todos os EQUIPAMENTOS para uso do paciente.'
+      text: 'A respiração de Darth Vader foi feita com um respirador de mergulho'
     },
     {
       id: 'text5',
-      text: 'No atendimento entre um paciente e outro é necessário LAVAR as mãos.'
+      text: 'O visual Yoda foi baseado em Albert Einstein. Stuart Freeborn, supervisor de efeitos especiais em O Império Contra-Ataca, usou o próprio rosto misturado com o do famoso físico para criar o personagem.'
     },
     {
       id: 'text6',
-      text: 'As luvas devem ser trocadas entre os procedimentos de um mesmo paciente'
+      text: 'Originalmente, R2-D2 participava de diálogos, com partes realmente faladas.'
     },
-    { id: 'text7', text: 'Todos somos responsáveis pelo controle de infecção' }
+    {
+      id: 'text7',
+      text: 'Variações da fala "tenho um mal pressentimento quanto a isso" foram colocadas em todos os filmes da saga.'
+    }
   ]
 
   useEffect(() => {
@@ -132,7 +135,7 @@ const App = () => {
       <Modal open={modal} setOpen={setModal} body={text} />
 
       <LogoContainer>
-        <Logo src={logo} alt="logo" height={200} />
+        <Logo src={logo} alt="logo" />
         <h1>João Ricardo</h1>
         {gameWon && (
           <ContainerButton>

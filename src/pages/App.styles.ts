@@ -25,7 +25,6 @@ export const LogoContainer = styled.div`
     font-weight: 500;
     line-height: 52px;
     text-align: center;
-    margin-left: 220px;
     color: #90d8ef;
     text-shadow: 0px 2px 29px #014051;
     margin-top: 20px;
@@ -41,8 +40,7 @@ export const LogoContainer = styled.div`
 `
 
 export const Logo = styled.img`
-  width: 200px;
-  margin-left: 250px;
+  width: 400px;
   @media (max-width: 1000px) {
     width: 250px;
   }
