@@ -1,5 +1,4 @@
-# Memory game focused on patient safety
-
+# Jogo da Memória
 Este jogo da memória foi desenvolvido com React, Vite e TypeScript, utilizando styled-components para estilização. A temática principal deste jogo é o emocionante universo de Star Wars.
 
 Neste jogo, o objetivo é encontrar pares de cartas viradas para baixo, revelando imagens icônicas relacionadas a Star Wars, personagens e naves da saga. Os jogadores precisam usar sua memória e habilidades de concentração para encontrar todas as correspondências corretas e desvendar os mistérios da galáxia distante.
